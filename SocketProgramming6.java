@@ -2,7 +2,7 @@ import java.*;
 import java.io.*;
 import java.net.*;
 
-public class client{
+public class SocketProgramming6{
 
     private static String IP="182.64.147.16";
     private static int PORT=4242;
