@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <name>
+            <firstName>Sanil</firstName>
+            <middleName></middleName>
+            <lastName>Khurana</lastName>
+        </name>
+        <age>19</age>
+        <abcd>abcd1</abcd>
+    </student>
+    <student>
+        <name>
+            <firstName>Sanil1</firstName>
+            <middleName></middleName>
+            <lastName>Khurana1</lastName>
+        </name>
+        <age>12</age>
+        <abcd>abcd2</abcd>
+    </student>
+</students>
