@@ -1,7 +1,9 @@
+
 import java.io.*;
 import java.util.NoSuchElementException;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.events.XMLEvent;
 
 
@@ -156,9 +158,29 @@ public class javaStax1{
         }
         return allDiscussions;
     }
+
+    public static void writeDiscussion(Discussion d){
+        try{
+            FileWriter fileWriter=new FileWriter("javaStax1.xml", true);
+            fileWriter.append(d.getXMLText());
+            fileWriter.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     
     public static void main(String[] args){
-        readAllDiscussion();
+        // readAllDiscussion();
+
+        Discussion d=new Discussion(
+            "Title131",
+            "User13",
+            "Contents hai yeh",
+            new Comment[]{new Comment("comment1", "user"), new Comment("comment2", "user2")}
+        );
+
+        // System.out.println(d.getXMLText());
+        writeDiscussion(d);
     }
 
     static class Discussion{
@@ -185,15 +207,44 @@ public class javaStax1{
         public String toString(){
             return "Discussion[title="+title+", user="+user+", contents="+contents+", comments="+comments+"]";
         }
+
+        public String getXMLText(){
+            String finalString="<"+ROOT+">\n";
+            //Enter the user
+            finalString+="\t<"+USER+">"+user+"</"+USER+">\n";
+            //Enter the title
+            finalString+="\t<"+TITLE+">"+title+"</"+TITLE+">\n";
+            //Enter the contents
+            finalString+="\t<"+CONTENTS+">"+contents+"</"+CONTENTS+">\n";
+            //Enter the comments
+            finalString+="\t<"+COMMENTS+">\n";
+            for(Comment c:comments){
+                finalString+=c.getXMLText("\t\t");
+            }
+            finalString+="\t</"+COMMENTS+">\n";
+            finalString+="</"+ROOT+">\n";
+            return finalString;
+        }
     }
 
     static class Comment{
+        final static String ROOT="comment";
         final static String COUNT="count";
         final static String TEXT="text";
         final static String USER="user";
 
         String text;
         String user;
+
+        public String getXMLText(String initTabs){
+            String finalString=initTabs+"<"+ROOT+">\n";
+            //Enter the text
+            finalString+=initTabs+"\t<"+TEXT+">"+text+"</"+TEXT+">\n";
+            //Enter the user
+            finalString+=initTabs+"\t<"+USER+">"+user+"</"+USER+">\n";
+            finalString+=initTabs+"</"+ROOT+">\n";
+            return finalString;
+        }
         
         public Comment(String text, String user){
             this.text=text;
