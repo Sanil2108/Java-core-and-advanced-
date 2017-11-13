@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<All>
+    <count>2</count>
+    <discussion>
+        <user>user1</user>
+        <title>title1</title>
+        <contents>contents1</contents>
+        <comments>
+            <count>2</count>
+            <comment>
+                <text>comment1</text>
+                <user>user2</user>
+            </comment>
+            <comment>
+                <text>comment2</text>
+                <user>user3</user>
+            </comment>
+        </comments>
+    </discussion>
+    <discussion>
+        <user>user4</user>
+        <title>title2</title>
+        <contents>contents2</contents>
+        <comments>
+            <count>0</count>
+        </comments>
+    </discussion>
+</All>
