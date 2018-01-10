@@ -6,6 +6,8 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.events.XMLEvent;
 
+import java .util.Scanner;
+
 
 public class javaStax1{
     final static String DEFAULT_VALUE="N/A";
@@ -16,9 +18,18 @@ public class javaStax1{
         int discussionIndex=0;
 
         try{
+            Scanner scanner=new Scanner(System.in);
+            String s, total="";
+            while(!((s=scanner.nextLine()).equals("\n"))){
+                if(s.equals("end")){
+                    break;
+                }
+                total+=s;
+            }
+            System.out.println(total);
             XMLInputFactory xmlInputFactory=XMLInputFactory.newInstance();
             XMLEventReader eventReader=xmlInputFactory.createXMLEventReader(
-                new FileReader("javaStax1.xml")
+                new StringReader(total)
             );
             XMLEvent currentEvent=eventReader.nextEvent();
             int count=-1;
@@ -170,17 +181,17 @@ public class javaStax1{
     }
     
     public static void main(String[] args){
-        // readAllDiscussion();
+        readAllDiscussion();
 
-        Discussion d=new Discussion(
-            "Title131",
-            "User13",
-            "Contents hai yeh",
-            new Comment[]{new Comment("comment1", "user"), new Comment("comment2", "user2")}
-        );
+        // Discussion d=new Discussion(
+        //     "Title131",
+        //     "User13",
+        //     "Contents hai yeh",
+        //     new Comment[]{new Comment("comment1", "user"), new Comment("comment2", "user2")}
+        // );
 
         // System.out.println(d.getXMLText());
-        writeDiscussion(d);
+        // writeDiscussion(d);
     }
 
     static class Discussion{

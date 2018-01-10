@@ -9,7 +9,7 @@ public class SocketProgramming6{
     private static InetAddress local;
 
     public static void main(String[] args) throws Exception{
-        // Server server=new Server();
+        Server server=new Server();
         Client client=new Client(args.length>0?args[0]:IP);
     }
 
